@@ -1,8 +1,18 @@
-const ObjectID = require('mongodb').ObjectID;
 
 module.exports = function (app, database) {
-  app.post('/OAuth', (req, res) => {
+  app.post('/', (req, res) => {
+    var when;
     console.log(req.body);
+    if (req.body.when === "before") {
+      when = "$lt"
+    } else if (req.body.when === "after") {
+      when = "$gte"
+    };
+
+    const filter = database.db().collection('user-items').find({ "created": { $lt: 1555525072000 } })
+    filter.forEach(function(item) {
+      console.log("item", item);
+    });
     res.send(req.body);
   })
 
