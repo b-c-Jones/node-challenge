@@ -15,7 +15,8 @@ const port = 9000;
 
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
-  console.log(database)
+  //console.log(database)
+  
 const credentials = {
   clientId,
   redirectUri: `http://localhost:${port}/logged-in`
@@ -53,12 +54,16 @@ app.get("/logged-in", function(req, res) {
   }
 });
 
+// app.get("/home", function(req, res) {
+//     res.send(app.use(express.static('public')));
+// })
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-  app.use(express.static('public'));
-  require('./app/routes')(app, database);
   
+  require('./app/routes')(app, database);
+  app.use(express.static('./public'));
   app.listen(port, () => {
     console.log("Live on localhost:" + port);
   });
