@@ -1,20 +1,20 @@
-
 module.exports = function (app, database) {
-  app.post('/', (req, res) => {
-    var when;
-    console.log(req.body);
+  app.post('/get-data', (req, res) => {
+    console.log(req.body)
+    var date = new Date(req.body.date).getTime();
+    console.log(date);
     if (req.body.when === "before") {
-      when = "$lt"
+      var filter = database.db().collection('user-items').find({ "created": { $lt: date } });
     } else if (req.body.when === "after") {
-      when = "$gte"
+      var filter = database.db().collection('user-items').find({ "created": { $gte: date } });
     };
-
-    const filter = database.db().collection('user-items').find({ "created": { $lt: 1555525072000 } })
-    filter.forEach(function(item) {
-      console.log("item", item);
+      filter.count().then(function(count) {
+        console.log(count);
+      });
+    filter.toArray().then(function(value) {
+      res.send(value);
     });
-    res.send(req.body);
-  })
+  });
 
   // app.get('/:id', (req, res) => {
   //   const id = req.params.id;
