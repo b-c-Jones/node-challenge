@@ -1,30 +1,28 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>ArcGIS Item Filter</title>
-    <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.2.5/css/calcite-web.min.css">
-    <link rel="stylesheet" href="./stylesheet.css">
-    <script src="https://js.arcgis.com/4.12/"></script>
-    <script defer src="./client.js"></script>
-  </head>
-  <body>
-    <div class="header top-nav fade-in" id="headerDiv">
-      <h1 class="top-nav-title" id="headerTitle">
-        ArcGIS Item Filter
-      </h1>
-      <div class="dropdown js-dropdown right" id="userDiv">
-          <a class="top-nav-link icon-ui-user margin-left-1 js-dropdown-toggle" id="userId"  tabindex="0" aria-haspopup="true" aria-expanded="false" href="#">User</a>
-          <nav class="dropdown-menu dropdown-right" role="menu">
-            <span class="dropdown-title">
-              <span id="userFullName">User Name</span>
-              <br>
-              <small id="userName">username</small>
-            </span>
-            <a class="dropdown-link" id="sign-out" role="menu-item">Sign Out</a>
-          </nav>
-        </div>
-    </div>
-    <button id="testButton"></button>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>ArcGIS Item Filter</title>
+  <!-- <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.2.5/css/calcite-web.min.css"> -->
+  <link rel="stylesheet" href="https://js.arcgis.com/3.29/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="./stylesheet.css">
+  <script src="https://js.arcgis.com/4.12/"></script>
+  <script defer src="./client.js"></script>
+</head>
+
+<body class="claro">
+  <div class="header top-nav fade-in" id="headerDiv">
+    <h1 class="top-nav-title" id="headerTitle">
+      ArcGIS Item Filter
+    </h1>
+  </div>
+  <label for="date">Filter by date created:</label>
+  <select name="whenSelect" id="whenSelect">
+    <option value="before">Before</option>
+    <option value="after">After</option>
+  </select>
+  <input type="text" name="date" id="date">
+  <button id="testButton">Get Items</button>
+
+  <div id="grid"></div>
+</body>
+
 </html>
